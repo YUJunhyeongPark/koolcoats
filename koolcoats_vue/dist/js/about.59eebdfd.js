@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkkoolcoats_vue"]=self["webpackChunkkoolcoats_vue"]||[]).push([[443],{7381:function(n,u,t){t.r(u),t.d(u,{default:function(){return f}});var a=t(3396);const e={class:"about"},o=(0,a._)("h1",null,"This is an about page",-1),s=[o];function c(n,u){return(0,a.wg)(),(0,a.iD)("div",e,s)}var r=t(89);const i={},l=(0,r.Z)(i,[["render",c]]);var f=l}}]);
+//# sourceMappingURL=about.59eebdfd.js.map
