@@ -1,8 +1,8 @@
 <template>
   <div class="home">
-    <section class="hero is-medium is-dark mb-6">
-      <div class="hero-body has-text-centered">
-        <p class="title mb-6">
+    <section class="hero is-medium is-black mb-6">
+      <div class="hero-body has-text-left">
+        <p class="title mb-20">
           Welcome to Koolcoats
         </p>
         <p class="subtitle">
@@ -17,24 +17,15 @@
       </div>
 
 
-      <div class="column is-3" v-for="product in latestProducts" v-bind:key="product.id">
-        <div class="box">
-          <figure class="image mb-4">
-            <img v-bind:src="product.get_thumbnail">
-          </figure>
-
-          <h3 class="is-size-4">{{ product.name }}</h3>
-          <p class="is-size-6 has-text-grey">${{ product.price }}</p>
-
-          <router-link v-bind:to="product.get_absolute_url" class="button is-dark mt-4">View Details</router-link>
-        </div>
-      </div>
+      <ProductBox v-for="product in latestProducts" v-bind:key="product.id" v-bind:product="product" />
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+
+import ProductBox from '@/components/ProductBox'
 
 export default {
   name: 'HomeView',
@@ -44,33 +35,25 @@ export default {
     }
   },
   components: {
+    ProductBox
   },
   mounted() {
     this.getLatestProducts()
+    document.title = 'Home | Koolcoats'
   },
   methods: {
-    getLatestProducts() {
-      axios({
-        method: 'get',
-        url: 'http://127.0.0.1:8000/api/v1/latest-products/',
-        auth: {
-          username: 'oakr0414',
-          password: 'aortm9606'
-        }
-      }).then(response => {
-        this.latestProducts = response.data
-      }).catch(error => {
-        console.log(error)
-      })
+    async getLatestProducts() {
+      this.$store.commit('setIsLoading', true)
+      await axios
+        .get('/api/v1/latest-products/')
+        .then(response => {
+          this.latestProducts = response.data
+        })
+        .catch(error => {
+          console.log(error)
+        })
+      this.$store.commit('setIsLoading', false)
     }
   }
 }
 </script>
-
-<stype scoped>
-  .image {
-    margin-top: -1.25rem;
-    margin-left: -1.25rem;
-    margin-right: -1.25rem;
-  }
-</stype>

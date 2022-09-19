@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+STRIPE_SECRET_KEY = 'sk_test_51LarkpEWYMNvjqny2JE2Ki2Iw624phAbUoJzPBPV9mJcRoUoqAMIfwK0BwnXEtghfcsgZ4ttjtcpnNlWqDvxsrHz00NXAN7dLb'
+
 
 # Application definition
 
@@ -43,7 +45,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'djoser',
 
-    'product'
+    'product',
+    'order'
 ]
 
 CORS_ALLOWED_ORIGINS = [
@@ -128,8 +131,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
-MEDIAL_URL = 'media/'
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media/'
 
 # Default primary key field type
